@@ -11,13 +11,6 @@ import {
   LineChart,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardHeader,
-  CardTitle,
-  CardDescription,
-  CardContent,
-} from "@/components/ui/card";
 
 export function Sidebar() {
   return (
@@ -50,16 +43,16 @@ export function Sidebar() {
                 icon: <Flag className="h-4 w-4" />,
                 active: true,
               },
+			  {
+				to: "/categories",
+				label: "Categories",
+				icon: <Users className="h-4 w-4" />,
+			  },
               {
                 to: "/profile",
                 label: "Profile",
                 icon: <ShoppingCart className="h-4 w-4" />,
                 badge: 6,
-              },
-              {
-                to: "#",
-                label: "Customers",
-                icon: <Users className="h-4 w-4" />,
               },
               {
                 to: "#",
@@ -91,7 +84,7 @@ export function Sidebar() {
             ))}
           </nav>
         </div>
-        <div className="mt-auto p-4">
+        {/* <div className="mt-auto p-4">
           <Card>
             <CardHeader className="p-2 pt-0 md:p-4">
               <CardTitle>Upgrade to Pro</CardTitle>
@@ -106,7 +99,7 @@ export function Sidebar() {
               </Button>
             </CardContent>
           </Card>
-        </div>
+        </div> */}
       </div>
     </div>
   );

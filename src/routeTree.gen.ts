@@ -17,6 +17,7 @@ import { Route as IndexImport } from './routes/index'
 import { Route as AuthProfileImport } from './routes/_auth.profile'
 import { Route as AuthDashboardImport } from './routes/_auth.dashboard'
 import { Route as AuthCountriesImport } from './routes/_auth.countries'
+import { Route as AuthCategoriesImport } from './routes/_auth.categories'
 
 // Create/Update Routes
 
@@ -50,6 +51,11 @@ const AuthCountriesRoute = AuthCountriesImport.update({
   getParentRoute: () => AuthRoute,
 } as any)
 
+const AuthCategoriesRoute = AuthCategoriesImport.update({
+  path: '/categories',
+  getParentRoute: () => AuthRoute,
+} as any)
+
 // Populate the FileRoutesByPath interface
 
 declare module '@tanstack/react-router' {
@@ -74,6 +80,13 @@ declare module '@tanstack/react-router' {
       fullPath: '/login'
       preLoaderRoute: typeof LoginImport
       parentRoute: typeof rootRoute
+    }
+    '/_auth/categories': {
+      id: '/_auth/categories'
+      path: '/categories'
+      fullPath: '/categories'
+      preLoaderRoute: typeof AuthCategoriesImport
+      parentRoute: typeof AuthImport
     }
     '/_auth/countries': {
       id: '/_auth/countries'
@@ -102,12 +115,14 @@ declare module '@tanstack/react-router' {
 // Create and export the route tree
 
 interface AuthRouteChildren {
+  AuthCategoriesRoute: typeof AuthCategoriesRoute
   AuthCountriesRoute: typeof AuthCountriesRoute
   AuthDashboardRoute: typeof AuthDashboardRoute
   AuthProfileRoute: typeof AuthProfileRoute
 }
 
 const AuthRouteChildren: AuthRouteChildren = {
+  AuthCategoriesRoute: AuthCategoriesRoute,
   AuthCountriesRoute: AuthCountriesRoute,
   AuthDashboardRoute: AuthDashboardRoute,
   AuthProfileRoute: AuthProfileRoute,
@@ -119,6 +134,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '': typeof AuthRouteWithChildren
   '/login': typeof LoginRoute
+  '/categories': typeof AuthCategoriesRoute
   '/countries': typeof AuthCountriesRoute
   '/dashboard': typeof AuthDashboardRoute
   '/profile': typeof AuthProfileRoute
@@ -128,6 +144,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '': typeof AuthRouteWithChildren
   '/login': typeof LoginRoute
+  '/categories': typeof AuthCategoriesRoute
   '/countries': typeof AuthCountriesRoute
   '/dashboard': typeof AuthDashboardRoute
   '/profile': typeof AuthProfileRoute
@@ -138,6 +155,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/_auth': typeof AuthRouteWithChildren
   '/login': typeof LoginRoute
+  '/_auth/categories': typeof AuthCategoriesRoute
   '/_auth/countries': typeof AuthCountriesRoute
   '/_auth/dashboard': typeof AuthDashboardRoute
   '/_auth/profile': typeof AuthProfileRoute
@@ -145,14 +163,29 @@ export interface FileRoutesById {
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '' | '/login' | '/countries' | '/dashboard' | '/profile'
+  fullPaths:
+    | '/'
+    | ''
+    | '/login'
+    | '/categories'
+    | '/countries'
+    | '/dashboard'
+    | '/profile'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '' | '/login' | '/countries' | '/dashboard' | '/profile'
+  to:
+    | '/'
+    | ''
+    | '/login'
+    | '/categories'
+    | '/countries'
+    | '/dashboard'
+    | '/profile'
   id:
     | '__root__'
     | '/'
     | '/_auth'
     | '/login'
+    | '/_auth/categories'
     | '/_auth/countries'
     | '/_auth/dashboard'
     | '/_auth/profile'
@@ -194,6 +227,7 @@ export const routeTree = rootRoute
     "/_auth": {
       "filePath": "_auth.tsx",
       "children": [
+        "/_auth/categories",
         "/_auth/countries",
         "/_auth/dashboard",
         "/_auth/profile"
@@ -201,6 +235,10 @@ export const routeTree = rootRoute
     },
     "/login": {
       "filePath": "login.tsx"
+    },
+    "/_auth/categories": {
+      "filePath": "_auth.categories.tsx",
+      "parent": "/_auth"
     },
     "/_auth/countries": {
       "filePath": "_auth.countries.tsx",
