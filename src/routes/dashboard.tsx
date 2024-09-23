@@ -11,5 +11,13 @@ export const Route = createFileRoute('/dashboard')({
       });
     }
   },
-  component: <main>Private Route</main>,
+  component: Dashboard,
 });
+
+function Dashboard() {
+  return (
+    <>
+      <main>Private Route</main>
+    </>
+  )
+}

@@ -14,7 +14,7 @@ const getLocalData = () => {
   return localStorage.getItem(key) || null;
 };
 
-const setStoreUser = (user: string | null) => {
+const setStoredUser = (user: string | null) => {
   if (user) {
     localStorage.setItem(key, user);
   } else {
@@ -31,12 +31,12 @@ export const AuthProviderContext = ({
   const isAuthenticated = !!user;
 
   const logout = useCallback(async () => {
-    setStoreUser(null);
+    setStoredUser(null);
     setUser(null);
   }, []);
 
   const login = useCallback(async (username: string) => {
-    setStoreUser(username);
+    setStoredUser(username);
     setUser(username);
   }, []);
 

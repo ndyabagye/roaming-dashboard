@@ -2,14 +2,14 @@ import { Outlet, createRootRouteWithContext } from "@tanstack/react-router";
 import { TanStackRouterDevtools } from "@tanstack/router-devtools";
 import { QueryClient } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
-import { IAuthContext } from "../auth";
+import type { IAuthContext } from "../auth";
 
 export interface IRouterContext {
 	auth: IAuthContext,
 	queryClient: QueryClient,
 }
 
-export const Route = createRootRouteWithContext<IAuthContext>()({
+export const Route = createRootRouteWithContext<IRouterContext>()({
 	component: RootComponent,
 });
 
