@@ -1,3 +1,4 @@
+import DemoPage from '@/components/partners'
 import { createFileRoute, redirect } from '@tanstack/react-router'
 
 export const Route = createFileRoute('/_auth/dashboard')({
@@ -17,7 +18,7 @@ export const Route = createFileRoute('/_auth/dashboard')({
 function Dashboard() {
   return (
     <>
-      <main>Private Route</main>
+      <DemoPage/>
     </>
   )
 }
