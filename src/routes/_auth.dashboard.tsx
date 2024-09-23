@@ -1,6 +1,6 @@
-import { createFileRoute, redirect } from '@tanstack/react-router';
- 
-export const Route = createFileRoute('/dashboard')({
+import { createFileRoute, redirect } from '@tanstack/react-router'
+
+export const Route = createFileRoute('/_auth/dashboard')({
   beforeLoad: ({ context, location }) => {
     if (!context.auth.isAuthenticated) {
       throw redirect({
@@ -8,11 +8,11 @@ export const Route = createFileRoute('/dashboard')({
         search: {
           redirect: location.href,
         },
-      });
+      })
     }
   },
   component: Dashboard,
-});
+})
 
 function Dashboard() {
   return (

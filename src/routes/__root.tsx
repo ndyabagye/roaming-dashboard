@@ -17,7 +17,7 @@ function RootComponent() {
 	return (
 		<>
 			<Outlet />
-			<ReactQueryDevtools initialIsOpen={false} buttonPosition="top-right" />
+			<ReactQueryDevtools initialIsOpen={false} buttonPosition="bottom-left" />
 			<TanStackRouterDevtools  position="bottom-right" />
 		</>
 	)
